@@ -1,55 +1,50 @@
 # DRDO
-Human Action Recognition using LSTM and MediaPipe. Captures 30-frame pose sequences to classify actions in real-time with high accuracy. Includes keypoint extraction, preprocessing, model training, and live prediction. Lightweight, fast, and ideal for gesture-based interfaces.
-🧠 Human Action Recognition using LSTM Neural Networks
-This project focuses on classifying human actions using a deep learning model based on Long Short-Term Memory (LSTM) networks. It takes in sequences of extracted features (like body keypoints or motion vectors) and learns temporal patterns to predict the performed action. The implementation is done in Python using TensorFlow and Keras, and includes TensorBoard support for visualizing model performance.
+This project demonstrates a real-time Sign Language Recognition System that combines MediaPipe Holistic for human landmark detection and a Long Short-Term Memory (LSTM) deep learning model for temporal sequence classification. The goal is to move beyond single-frame gesture detection by capturing 30-frame sequences for accurate and smooth action recognition.
 
-🔍 Overview
-The system is designed to process time-series data, such as pose estimations over video frames. It uses stacked LSTM layers to learn from temporal features and dense layers to perform final classification. The model is trained on labeled sequences where each action is represented by a sequence of feature vectors.
+📌 Key Features
+        MediaPipe Holistic Integration: Captures detailed 3D keypoints from the face, hands, and body for rich gesture representation.
 
-📐 Model Architecture
-Input Shape: Sequences of shape (30, 1662), representing 30 time steps and 1662 features.
+        LSTM Neural Network: Utilizes a stacked LSTM model with dense layers to learn temporal patterns in sign language gestures.
 
-LSTM Layers:
+        Real-time Detection: Runs live webcam input through the trained model to display gesture predictions with visual feedback and probability scores.
 
-LSTM(64, return_sequences=True)
+        Custom Dataset Collection: Captures and stores keypoints in organized folder structures for different actions, using NumPy arrays.
 
-LSTM(128, return_sequences=True)
+        Evaluation Tools: Includes confusion matrix and accuracy metrics for assessing model performance.
 
-LSTM(64, return_sequences=False)
+         Optimized Pipeline: Handles sequence stability, frame alignment, and false-positive filtering for reliable real-time prediction.
 
-Dense Layers:
+📁 Project Structure
+          mediapipe_detection(): Preprocesses frames using MediaPipe and returns keypoints.
 
-Dense(64, activation='relu')
+         draw_styled_landmarks(): Visualizes detected landmarks with custom styling.
 
-Dense(32, activation='relu')
+         LSTM_Model(): A 3-layer LSTM model with 4 dense layers for multi-class classification.
 
-Output Dense layer with softmax for classification
+         train.py: Script to train the model on collected data.
 
-📊 Training Insights
-Loss Function: Categorical Crossentropy
+          real_time.py: Script to run the model in real-time with webcam feed.
 
-Optimizer: Adam
+🧠 Applications
+    Sign language translation
 
-Accuracy Achieved: ~98.8% categorical accuracy
+    Gesture-controlled interfaces
 
-Epochs: 150
+    Assistive communication tools
 
-Visualization: TensorBoard is used to track epoch_categorical_accuracy and loss.
+    Human activity recognition
 
-The TensorBoard graph shows rapid improvement in accuracy within the first 50 epochs and then stabilizes, indicating effective learning with minimal overfitting.
+🚀 Technologies Used
+   Python
 
-📂 File Structure
-train_model.py – Main training script
+   OpenCV
 
-tensorboard_logs/ – Logs for real-time performance monitoring
+   MediaPipe
 
-model.png – LSTM architecture visualization
+   TensorFlow / Keras
 
-accuracy_plot.png – Accuracy trend during training
+   NumPy, Matplotlib, Scikit-learn
 
-✅ Future Enhancements
-Integrate MediaPipe for real-time pose extraction
+Feel free to modify the architecture or add new gesture classes to expand this system! Perfect for beginners and researchers interested in computer vision, deep learning, and HCI (Human-Computer Interaction).
 
-Enable live webcam action prediction
 
-Export model for mobile or edge deployment
